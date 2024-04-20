@@ -34,7 +34,7 @@ pip3 install -r requirements.txt
     :package: Painless install. Available through `pip`, only requires `requests`
     :eyes: in the 'result' file you will find "face_DETECTION" which means the list of usernames that have detected faces
     :eyes: in the 'result' file you will find "face_NOT_tect" which means the list of usernames that were NOT detected as faces
-    :white_check_mark: SUCCES!
+    :white_check_mark: SUCCES! 
 
 Finally!
 
