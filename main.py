@@ -41,8 +41,7 @@ async def main(chunk):
                 data_save = f'{username}:{followers}:{following}:{URL_IMAGE}'
                 if int(followers) >= int(FOLLOWERS_):
                     with open('result/good.txt', 'a', encoding='utf-8') as f:
-                        if data_save not in open('result/good.txt', 'r', encoding='utf-8').read():
-                            f.write(data_save + '\n')
+                        f.write(data_save + '\n')
                     print(f'{Fore.MAGENTA}[ {Fore.WHITE}{counter}{Fore.MAGENTA} ] [ {Fore.GREEN}{username}{Fore.MAGENTA} ] [ FOLLOWERS: {Fore.GREEN}{followers}{Fore.MAGENTA} ] [ FACE DETECT: {Fore.GREEN} NOT CHECKED {Fore.MAGENTA} ] [ {Fore.GREEN} FOLLOWERS > {FOLLOWERS_}{Fore.MAGENTA} ]')
                 else:
                     from face_detector import detect_facex
@@ -51,19 +50,16 @@ async def main(chunk):
                     face_tetect = await detect_facex(imageURL=URL_IMAGE, output_file=username, save_img=False)
                     if face_tetect and str(face_tetect) != 'URL ERROR':
                         with open('result/face_DETECTED.txt', 'a', encoding='utf-8') as f:
-                            if data_save not in open('result/face_DETECTED.txt', 'r', encoding='utf-8').read():
-                                f.write(data_save + '\n')
+                            f.write(data_save + '\n')
                         print(f'{Fore.MAGENTA}[ {Fore.WHITE}{counter}{Fore.MAGENTA} ] [ {Fore.RED}{username}{Fore.MAGENTA} ] [ FOLLOWERS: {Fore.RED}{followers}{Fore.MAGENTA} ] [ FACE DETECT: {Fore.RED}{face_tetect} {Fore.MAGENTA} ] ')
                     else:
                         if str(face_tetect) == 'URL ERROR':
                             print(f'{Fore.MAGENTA}[ {Fore.WHITE}{counter}{Fore.MAGENTA} ] [ {Fore.RED}{username}{Fore.MAGENTA} ] [ FOLLOWERS: {Fore.RED}{followers}{Fore.MAGENTA} ] [ FACE DETECT: {Fore.RED}URL IMAGE ERROR{Fore.MAGENTA} ] ')
                             with open('result/url_error.txt', 'a', encoding='utf-8') as f:
-                                if data_save not in open('result/url_error.txt', 'r', encoding='utf-8').read():
-                                    f.write(data_save + '\n')
+                                f.write(data_save + '\n')
                         else:
                             with open('result/good.txt', 'a', encoding='utf-8') as f:
-                                if data_save not in open('result/good.txt', 'r', encoding='utf-8').read():
-                                    f.write(data_save + '\n')
+                                f.write(data_save + '\n')
                             print(f'{Fore.MAGENTA}[ {Fore.WHITE}{counter}{Fore.MAGENTA} ] [ {Fore.GREEN}{username}{Fore.MAGENTA} ] [ FOLLOWERS: {Fore.GREEN}{followers}{Fore.MAGENTA} ] [ FACE DETECT: {Fore.GREEN}{face_tetect} {Fore.MAGENTA} ] ')
     
     except Exception as e:
