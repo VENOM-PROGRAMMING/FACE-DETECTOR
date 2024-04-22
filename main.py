@@ -1,4 +1,3 @@
-from face_detector import detect_face
 import asyncio
 import random
 from aiomultiprocess import Pool
@@ -35,28 +34,42 @@ async def main(chunk):
         data = chunk.split(':')
         if len(data) == 6:
             counter, username , followers, following , profile_images, URL = data
+            CHECK_FOLLOWERS = data_base()['CHECK_FOLLOWERS']
+            FOLLOWERS_ = data_base()['FOLLOWERS_NUMBER']
             URL_IMAGE = f'{profile_images}:{URL}'
-            data_save = f'{username}:{followers}:{following}:{URL_IMAGE}'
-            face_tetect = await detect_face(imageURL=URL_IMAGE, output_file=username, save_img=False)
-            if face_tetect and str(face_tetect) != 'URL ERROR':
-                with open('result/face_DETECTED.txt', 'a', encoding='utf-8') as f:
-                    if data_save not in open('result/face_DETECTED.txt', 'r', encoding='utf-8').read():
-                        f.write(data_save + '\n')
-                print(f'{Fore.MAGENTA}[ {Fore.WHITE}{counter}{Fore.MAGENTA} ] [ {Fore.RED}{username}{Fore.MAGENTA} ] [ FOLLOWERS: {Fore.RED}{followers}{Fore.MAGENTA} ] [ FACE DETECT: {Fore.RED}{face_tetect} {Fore.MAGENTA} ] ')
-            else:
-                if str(face_tetect) == 'URL ERROR':
-                    print(f'{Fore.MAGENTA}[ {Fore.WHITE}{counter}{Fore.MAGENTA} ] [ {Fore.RED}{username}{Fore.MAGENTA} ] [ FOLLOWERS: {Fore.RED}{followers}{Fore.MAGENTA} ] [ FACE DETECT: {Fore.RED}URL IMAGE ERROR{Fore.MAGENTA} ] ')
-                    with open('result/url_error.txt', 'a', encoding='utf-8') as f:
-                        if data_save not in open('result/url_error.txt', 'r', encoding='utf-8').read():
+            if CHECK_FOLLOWERS:
+                data_save = f'{username}:{followers}:{following}:{URL_IMAGE}'
+                if int(followers) >= int(FOLLOWERS_):
+                    with open('result/good.txt', 'a', encoding='utf-8') as f:
+                        if data_save not in open('result/good.txt', 'r', encoding='utf-8').read():
                             f.write(data_save + '\n')
+                    print(f'{Fore.MAGENTA}[ {Fore.WHITE}{counter}{Fore.MAGENTA} ] [ {Fore.GREEN}{username}{Fore.MAGENTA} ] [ FOLLOWERS: {Fore.GREEN}{followers}{Fore.MAGENTA} ] [ FACE DETECT: {Fore.GREEN} NOT CHECKED {Fore.MAGENTA} ] [ {Fore.GREEN} FOLLOWERS > {FOLLOWERS_}{Fore.MAGENTA} ]')
                 else:
-                    with open('result/face_NOT_detetect.txt', 'a', encoding='utf-8') as f:
-                        if data_save not in open('result/face_NOT_detetect.txt', 'r', encoding='utf-8').read():
-                            f.write(data_save + '\n')
-                    print(f'{Fore.MAGENTA}[ {Fore.WHITE}{counter}{Fore.MAGENTA} ] [ {Fore.GREEN}{username}{Fore.MAGENTA} ] [ FOLLOWERS: {Fore.GREEN}{followers}{Fore.MAGENTA} ] [ FACE DETECT: {Fore.GREEN}{face_tetect} {Fore.MAGENTA} ] ')
+                    from face_detector import detect_facex
+                    
+                    data_save = f'{username}:{followers}:{following}:{URL_IMAGE}'
+                    face_tetect = await detect_facex(imageURL=URL_IMAGE, output_file=username, save_img=False)
+                    if face_tetect and str(face_tetect) != 'URL ERROR':
+                        with open('result/face_DETECTED.txt', 'a', encoding='utf-8') as f:
+                            if data_save not in open('result/face_DETECTED.txt', 'r', encoding='utf-8').read():
+                                f.write(data_save + '\n')
+                        print(f'{Fore.MAGENTA}[ {Fore.WHITE}{counter}{Fore.MAGENTA} ] [ {Fore.RED}{username}{Fore.MAGENTA} ] [ FOLLOWERS: {Fore.RED}{followers}{Fore.MAGENTA} ] [ FACE DETECT: {Fore.RED}{face_tetect} {Fore.MAGENTA} ] ')
+                    else:
+                        if str(face_tetect) == 'URL ERROR':
+                            print(f'{Fore.MAGENTA}[ {Fore.WHITE}{counter}{Fore.MAGENTA} ] [ {Fore.RED}{username}{Fore.MAGENTA} ] [ FOLLOWERS: {Fore.RED}{followers}{Fore.MAGENTA} ] [ FACE DETECT: {Fore.RED}URL IMAGE ERROR{Fore.MAGENTA} ] ')
+                            with open('result/url_error.txt', 'a', encoding='utf-8') as f:
+                                if data_save not in open('result/url_error.txt', 'r', encoding='utf-8').read():
+                                    f.write(data_save + '\n')
+                        else:
+                            with open('result/good.txt', 'a', encoding='utf-8') as f:
+                                if data_save not in open('result/good.txt', 'r', encoding='utf-8').read():
+                                    f.write(data_save + '\n')
+                            print(f'{Fore.MAGENTA}[ {Fore.WHITE}{counter}{Fore.MAGENTA} ] [ {Fore.GREEN}{username}{Fore.MAGENTA} ] [ FOLLOWERS: {Fore.GREEN}{followers}{Fore.MAGENTA} ] [ FACE DETECT: {Fore.GREEN}{face_tetect} {Fore.MAGENTA} ] ')
     
     except Exception as e:
-                print(f'{Fore.MAGENTA}[ {Fore.RED}{data_save}{Fore.MAGENTA} ] [ {Fore.RED}{e}{Fore.MAGENTA} ] ')
+                print(e)
+                # print(f'{Fore.MAGENTA}[ {Fore.RED}{data_save}{Fore.MAGENTA} ] [ {Fore.RED}{e}{Fore.MAGENTA} ] ')
+                pass
 
 
 async def x():

@@ -1,3 +1,5 @@
 {
-    "THREAD":2
+    "THREAD":2,
+    "CHECK_FOLLOWERS":true,
+    "FOLLOWERS_NUMBER":20000
 }

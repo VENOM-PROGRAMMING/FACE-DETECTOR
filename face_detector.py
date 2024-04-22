@@ -1,25 +1,22 @@
 import os
-import matplotlib.pyplot as plt
+
 import cv2
-os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 from retinaface import RetinaFace
 import aiohttp
 import numpy as np
 import asyncio
 from io import BytesIO
 from PIL import Image
-
 async def download_image(url):
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as response:
+            
             if response.status == 200:
                 return  await response.read()
             else:
                 return False
-
-
-async def detect_face(imageURL, output_file, save_img):
-    
+async def detect_facex(imageURL, output_file, save_img):
+    pass
     output_file = f'images/{output_file}.jpg'
     image_content = await download_image(imageURL)
     if image_content != False:
@@ -40,6 +37,11 @@ async def detect_face(imageURL, output_file, save_img):
             return False
     else:
         return 'URL ERROR'
+
+
+
+
+    # import matplotlib.pyplot as plt
     # plt.imshow(image_rgb)
     # plt.axis('off')  
     # plt.show()
@@ -49,8 +51,8 @@ async def detect_face(imageURL, output_file, save_img):
 
 # username = 'marianandadqwd22'
 # async def detect_face():
-#     x = await detect_face('https://i0.wp.com/basketball.wales/wp-content/uploads/2021/02/38013941_1711524018902634_7417673816026906624_o.jpg?w=750&ssl=1', username, save_img = True)
+#     x = await detect_facex('https://pbs.twimg.com/profile_images/1770830343001509888/FjBXF46t.jpg', username, save_img = False)
 #     print(x)
 
 
-# asyncio.run(run_mainx())
+# asyncio.run(detect_face())

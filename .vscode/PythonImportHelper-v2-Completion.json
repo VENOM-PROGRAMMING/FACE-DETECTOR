@@ -1,0 +1,166 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "cv2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cv2",
+        "description": "cv2",
+        "detail": "cv2",
+        "documentation": {}
+    },
+    {
+        "label": "RetinaFace",
+        "importPath": "retinaface",
+        "description": "retinaface",
+        "isExtraImport": true,
+        "detail": "retinaface",
+        "documentation": {}
+    },
+    {
+        "label": "aiohttp",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "aiohttp",
+        "description": "aiohttp",
+        "detail": "aiohttp",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "asyncio",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "BytesIO",
+        "importPath": "io",
+        "description": "io",
+        "isExtraImport": true,
+        "detail": "io",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "Pool",
+        "importPath": "aiomultiprocess",
+        "description": "aiomultiprocess",
+        "isExtraImport": true,
+        "detail": "aiomultiprocess",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "TimeoutError",
+        "importPath": "asyncio.exceptions",
+        "description": "asyncio.exceptions",
+        "isExtraImport": true,
+        "detail": "asyncio.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "Fore",
+        "importPath": "colorama",
+        "description": "colorama",
+        "isExtraImport": true,
+        "detail": "colorama",
+        "documentation": {}
+    },
+    {
+        "label": "init",
+        "importPath": "colorama",
+        "description": "colorama",
+        "isExtraImport": true,
+        "detail": "colorama",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "data_base",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def data_base():\n    with open('config.json', 'r', encoding='utf-8') as config:\n        data = json.load(config)\n        return data\nasync def main(chunk):\n    try:\n        data = chunk.split(':')\n        if len(data) == 6:\n            counter, username , followers, following , profile_images, URL = data\n            CHECK_FOLLOWERS = data_base()['CHECK_FOLLOWERS']",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "PU",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "PU = []\nwith open('users.txt', 'r', encoding='utf-8', errors='ignore') as f:\n    x = 0\n    for line in f:\n        x += 1\n        y = line.strip()\n        PU.append(f'{x}:{y}')\ndef data_base():\n    with open('config.json', 'r', encoding='utf-8') as config:\n        data = json.load(config)",
+        "detail": "main",
+        "documentation": {}
+    }
+]
