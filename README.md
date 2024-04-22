@@ -41,6 +41,11 @@ pip3 install -r requirements.txt
 * :eyes: in the 'result' file you will find "face_NOT_tect" which means the list of usernames that were NOT detected as faces
 * :white_check_mark: SUCCES! 
 
+If you get error terminal: `To turn them off, set the environment variable TF_ENABLE_ONEDNN_OPTS=0 `:
+  
+* :white_check_mark: SOLVED: 
+  * :muscle:Search module branch "`RetineFace.py`" and add line `os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'`
+
 Finally!
 
 ```shell
